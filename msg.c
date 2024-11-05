@@ -101,6 +101,7 @@ int wait_receive(void * self, local_id from, Message * msg) {
 
 int receive_any(void * self, Message * msg) {
     bool got_msg = false;
+    int src = -1;
     while (!got_msg) {
         for (local_id from = 0; from < n + 1; ++from) {    
             if ((local_id)(uint64_t) self != from) {        
@@ -109,13 +110,14 @@ int receive_any(void * self, Message * msg) {
                     fprintf(stderr, "cannot get mes from %d\n", from);
                     return -1;
                 } else if (nbytes > 0) {
+                    src = from;
                     got_msg = true;
                     break;
                 }
             }
         }
     }
-    return 0;
+    return src;
 }
 
 void send_with_log(FILE* log, timestamp_t time, local_id id, int16_t s_type, balance_t balance) {

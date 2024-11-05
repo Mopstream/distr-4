@@ -10,6 +10,7 @@ int ***pipes;
 uint32_t stoi(char* s) {
     uint32_t n = 0;
     for (uint32_t i = 0; i < strlen(s); ++i) {
+        if (s[i] < '0' || s[i] > '9') return 0;
         n = n*10 + (s[i] - '0');
     }
     return n;

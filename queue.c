@@ -36,12 +36,21 @@ node_t* queue_pop(void) {
     return head;
 }
 
+node_t* queue_peek(void) {
+    node_t* head = queue;
+    if (!queue) {
+        fprintf(stderr, "ERROR peek from empty queue\n");
+        return NULL;
+    }
+    return head;
+}
+
 void print_queue(void) {
     node_t* this = queue;
-    printf("QUEUE: ");
+    fprintf(stderr, "QUEUE: ");
     while(this) {
-        printf("{%d; %d} -> ", this->time, this->id);
+        fprintf(stderr, "{%d; %d} -> ", this->time, this->id);
         this = this->next;
     }
-    printf("NULL\n");
+    fprintf(stderr, "NULL\n");
 }
