@@ -1,0 +1,7 @@
+.vscode
+lib32
+lib64
+jopa
+pa4
+*.log
+libruntime.so
